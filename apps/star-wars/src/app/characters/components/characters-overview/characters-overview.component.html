@@ -1,0 +1,21 @@
+<mat-card *ngIf="(character$|async)" 
+class="mat-card-dark mat-elevation-z5" style="margin-top: 10px"> 
+      <mat-card-header style="display: flex; justify-content: space-between;">
+        <mat-card-title class="accent">
+          Character: 
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ (character$ | async).name | titlecase}} 
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+        {{ character$|async|json}}
+
+      </mat-card-content>
+      <mat-card-actions style="display: flex; justify-content: space-between;">
+        <button type="button" mat-button (click)="close()">
+          Close
+        </button>
+      </mat-card-actions>
+  </mat-card>

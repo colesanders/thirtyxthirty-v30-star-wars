@@ -1,1 +1,155 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$star-wars-primary: mat-palette($mat-teal);
+$star-wars-accent: mat-palette($mat-lime, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$star-wars-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$star-wars-theme: mat-light-theme((
+  color: (
+    primary: $star-wars-primary,
+    accent: $star-wars-accent,
+    warn: $star-wars-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($star-wars-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+$primary-color: #263238;
+$secondary-color: #FFEBEE;
+$accent-color: white;
+$card-background: whitesmoke;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+thirty-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.toolbar {
+  display: flex; 
+  justify-content: space-between;
+  background-color: $primary-color;
+  border-bottom-right-radius: 10px;
+}
+
+.secondary-div {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.secondary-toolbar {
+  display: flex; 
+  justify-content: space-between;
+  background-color: $secondary-color;
+
+  border-radius: 0px 0px 10px 10px;
+}
+
+.subtitle {
+  font-size: 75%;
+}
+
+mat-sidenav {
+  width: auto;
+  background-color: $secondary-color !important;
+  border-radius: 0px 0px 8px 0px;
+  border-right: thin solid black !important;
+  text-align: center;
+}
+
+.content-spread {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accent {
+  color: $accent-color;
+}
+
+.mat-sidenav-container {
+  flex: 1;
+}
+
+.outlet {
+  display: flex;
+  padding: 8px;
+  justify-content: space-around;
+}
+
+.characters-containers {
+  display: flex;
+  padding: 8px;
+  justify-content: space-around;
+
+  .characters-list {
+    width: 49%;
+  }
+
+  .characters-detail {
+    width: 49%;
+  }
+}
+.login-border {
+  border: 2px solid $primary-color;
+  border-radius: 5px;
+}
+
+.mat-card-flat {
+  background-color: $card-background;
+}
+.portal-cards {
+  max-width: 33%;
+}
+.home-card {
+  background-color: $card-background;
+  width: 60%;
+  margin: auto;
+  margin-top: 5px;
+}
+.paginator {
+  background-color: $card-background
+}
+
+.mat-card-dark {
+  background-color: $card-background;
+
+  table{
+    background-color: $card-background;
+  }
+}
+
+.mat-card-light {
+  background-color: whitesmoke;
+}

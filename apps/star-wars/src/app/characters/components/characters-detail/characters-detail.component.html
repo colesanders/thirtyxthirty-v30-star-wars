@@ -1,0 +1,37 @@
+<mat-card class="mat-card-dark mat-elevation-z8"> 
+    <mat-card-header style="display: flex; justify-content: space-between;">
+      <mat-card-title>
+        Character Sheet
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <span *ngIf="character;else choose">
+
+        <mat-grid-list cols="2" rowHeight="40px">
+          <mat-grid-tile colspan="2">Name: {{ character.name }}</mat-grid-tile>
+          <mat-grid-tile>Birth Year: {{ character.birth_year }}</mat-grid-tile>
+          <mat-grid-tile>Eye Color: {{ character.eye_color |titlecase}}</mat-grid-tile>
+          <mat-grid-tile>Gender: {{ character.gender | titlecase}}</mat-grid-tile>
+          <mat-grid-tile>Hair Color: {{ character.hair_color | titlecase}}</mat-grid-tile>
+          <mat-grid-tile>Height: {{ character.height }}</mat-grid-tile>
+          <mat-grid-tile>Mass: {{ character.mass }}</mat-grid-tile>
+          <mat-grid-tile>Skin Color: {{ character.skin_color | titlecase}}</mat-grid-tile>
+          <mat-grid-tile>Home World: {{ character.homeworld }}</mat-grid-tile>
+        </mat-grid-list>
+        
+        <ng-template #elseblock>
+          <mat-spinner></mat-spinner>
+        </ng-template>
+      </span>
+      <ng-template #choose>
+        <h3 matLine>Choose Character!</h3>
+      </ng-template>
+      
+
+    </mat-card-content>
+    <mat-card-actions *ngIf="character" style="display: flex; justify-content: space-between;">
+      <button type="button" mat-button (click)="cancelled.emit();$event.stopImmediatePropagation();">
+        Cancel
+      </button>
+    </mat-card-actions>
+</mat-card>

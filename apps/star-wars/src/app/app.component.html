@@ -1,8 +1,47 @@
-<div style="text-align: center;">
-  <h1>Welcome to star-wars!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-  />
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<mat-toolbar color="secondary" class="toolbar mat-elevation-z20 accent">
+  <div>
+      <span class="title">
+          {{appInfo.title}}
+      </span>
+      <span class="subtitle">
+          {{appInfo.description}}
+      </span>
+      <button mat-icon-button (click)="sideBarOpen = !sideBarOpen">
+        <mat-icon>menu</mat-icon>
+      </button>
+  </div>
+  <button *ngIf="loginService.isAuthenticated$ | async; else elseblock" mat-button 
+  (click)="logout()">
+    Logout
+  </button>
+  <ng-template #elseblock>
+    <a mat-button class="nav-link" routerLink="/login" routerLinkActive="active">
+      <span >
+        Login
+      </span>
+    </a>
+  </ng-template>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="mat-elevation-z12"
+    [opened]="(loginService.isAuthenticated$ | async) && sideBarOpen" mode="side" >
+    <ng-container>
+      <nav>
+        <div>
+          <div *ngFor="let link of links" >
+            <a mat-button class="nav-link" [routerLink]="link.path" routerLinkActive="active">
+              <span >
+                {{link.title}}
+              </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </ng-container>
+  </mat-sidenav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

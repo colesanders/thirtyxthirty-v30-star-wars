@@ -1,0 +1,39 @@
+<div>
+    <div class="secondary-div ">
+        <mat-toolbar class="secondary-toolbar mat-elevation-z15" 
+        style="display: flex; justify-content: space-between;">
+            <span>
+                StarWars Characters
+            </span>
+            <div *ngIf="(character$|async)">
+                <a mat-button class="nav-link mat-elevation-z5" 
+                [routerLink]="(character$ | async).id" routerLinkActive="active">
+                    <span >
+                        Character Overview
+                    </span>
+                </a>
+            </div>
+        </mat-toolbar>
+    </div>
+    
+    <div class="characters-containers">
+        <div class="characters-list">
+            <thirty-characters-list 
+            [count]="count$ | async" 
+            [selectedCharacter]="character$ | async"
+            [characters]="characters$ | async" 
+            (selected)="select($event)">
+            </thirty-characters-list>
+        </div>
+        <div [@openClose]="detailOpen ? 'open' : 'closed'" 
+        (click)="focusDetail();$event.stopImmediatePropagation()">
+            <thirty-characters-detail [character]="character$ | async" (cancelled)="cancel()"> 
+            </thirty-characters-detail>
+    
+            <router-outlet >
+            </router-outlet>
+        </div>
+    </div>
+</div>
+
+

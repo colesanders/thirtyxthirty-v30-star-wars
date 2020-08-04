@@ -20,6 +20,10 @@ import { CharactersListComponent } from './characters/components/characters-list
 import { CharactersOverviewComponent } from './characters/components/characters-overview/characters-overview.component';
 
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import { GeneralsComponent } from './generals/generals.component';
+import { GeneralsListComponent } from './generals/components/generals-list/generals-list.component';
+import { GeneralsDetailComponent } from './generals/components/generals-detail/generals-detail.component';
+import { GeneralsOverviewComponent } from './generals/components/generals-overview/generals-overview.component';
 
 
 @NgModule({
@@ -32,6 +36,10 @@ import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
     RatingComponent,
     MatChipComponent,
     CharactersOverviewComponent,
+    GeneralsComponent,
+    GeneralsListComponent,
+    GeneralsDetailComponent,
+    GeneralsOverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,8 +51,6 @@ import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
     FormsModule,
     RoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(fromCharacters.charactersReducer, {}),
-    EffectsModule.forRoot([fromCharacters.CharactersEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

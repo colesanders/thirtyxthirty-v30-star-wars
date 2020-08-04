@@ -1,0 +1,45 @@
+<div>
+    <div class="secondary-div ">
+        <mat-toolbar class="secondary-toolbar mat-elevation-z15" 
+        style="display: flex; justify-content: space-between;">
+            <span>
+                StarWars {{dataSetRoute | titlecase}}
+            </span>
+            <div *ngIf="(general$|async)">
+                <a mat-button class="nav-link mat-elevation-z5" 
+                [routerLink]="(general$ | async).id" routerLinkActive="active">
+                    <span >
+                        {{dataSetRoute}} Overview
+                    </span>
+                </a>
+            </div>
+        </mat-toolbar>
+    </div>
+    
+    <div class="generals-containers">
+        <div class="generals-list">
+            <thirty-generals-list 
+            [count]="count$ | async"
+            [dataSet]="dataSetFields.list" 
+            [dataSetRoute]="dataSet$ | async"
+            [selectedGeneral]="general$ | async"
+            [generals]="generals$ | async" 
+            (selected)="select($event)">
+            </thirty-generals-list>
+        </div>
+        <div [@openClose]="detailOpen ? 'open' : 'closed'" 
+        (click)="focusDetail();$event.stopImmediatePropagation()">
+            <thirty-generals-detail 
+            [general]="general$ | async" 
+            [dataSet]="dataSetFields.detail"
+            [dataSetRoute]="dataSet$ | async"
+            (cancelled)="cancel()"> 
+            </thirty-generals-detail>
+    
+            <router-outlet >
+            </router-outlet>
+        </div>
+    </div>
+</div>
+
+

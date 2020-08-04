@@ -121,6 +121,19 @@ mat-sidenav {
     width: 49%;
   }
 }
+.generals-containers {
+  display: flex;
+  padding: 8px;
+  justify-content: space-around;
+
+  .generals-list {
+    width: 49%;
+  }
+
+  .generals-detail {
+    width: 49%;
+  }
+}
 .login-border {
   border: 2px solid $primary-color;
   border-radius: 5px;

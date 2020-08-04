@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CharactersComponent } from './characters/characters.component';
 import { CharactersOverviewComponent } from './characters/components/characters-overview/characters-overview.component';
+import { GeneralsComponent } from './generals/generals.component';
+import { GeneralsOverviewComponent } from './generals/components/generals-overview/generals-overview.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 
 import { UiLoginModule } from '@thirty/ui-login';
@@ -20,6 +22,15 @@ const routes: Routes = [
       {
         path: ':id', 
         component: CharactersOverviewComponent 
+      }
+    ]
+  },
+  { path: 'general/:data-set', component: GeneralsComponent,
+    canActivate: [LoginGuard],
+    children: [
+      {
+        path: ':id', 
+        component: GeneralsOverviewComponent 
       }
     ]
   },

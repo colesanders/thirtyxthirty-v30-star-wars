@@ -23,8 +23,8 @@ export class CharactersOverviewComponent implements OnInit {
   }
 
   get(): void {
-    const name = this.route.snapshot.paramMap.get('id');
-    this.charactersFacade.selectCharacter(name);
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.charactersFacade.selectCharacter(id);
   }
 
   close(){

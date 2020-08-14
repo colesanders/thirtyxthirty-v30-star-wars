@@ -37,7 +37,7 @@ export class GeneralsListComponent implements OnInit, OnChanges {
     this.filteredGeneral = this.myControl.valueChanges
     .pipe(
       startWith(''),
-      map(value => typeof value === 'string' ? value : value.name),
+      map(value => typeof value === 'string' ? value : value[this.dataSet]),
       map(name => name ? this._filter(name) : this.generals.slice())
     );
   }
@@ -46,10 +46,6 @@ export class GeneralsListComponent implements OnInit, OnChanges {
     if(this.generals?.length > this.count){
       this.count = this.generals.length
     }
-  }
-
-  search(){
-    this.generalsFacade.loadGenerals();
   }
 
   private _filter(value: string): General[] {
@@ -65,7 +61,7 @@ export class GeneralsListComponent implements OnInit, OnChanges {
     this.sliceEnd = (pageEvent.pageIndex + 1) * pageEvent.pageSize;
     if(this.sliceEnd>this.generals.length){
       const nextPage = Math.floor(this.sliceEnd / 10)+1;
-      this.generalsFacade.loadCharactesByPage(nextPage);
+      this.generalsFacade.loadGeneralsByPage(nextPage);
     }
   }
 

@@ -47,10 +47,6 @@ export class CharactersListComponent implements OnInit, OnChanges {
     }
   }
 
-  search(){
-    this.charactersFacade.loadCharacters();
-  }
-
   private _filter(value: string): Character[] {
     const filterValue = value.toLowerCase();
 
@@ -64,7 +60,7 @@ export class CharactersListComponent implements OnInit, OnChanges {
     this.sliceEnd = (pageEvent.pageIndex + 1) * pageEvent.pageSize;
     if(this.sliceEnd>this.characters.length){
       const nextPage = Math.floor(this.sliceEnd / 10)+1;
-      this.charactersFacade.loadCharactesByPage(nextPage);
+      this.charactersFacade.loadCharactersByPage(nextPage);
     }
   }
 

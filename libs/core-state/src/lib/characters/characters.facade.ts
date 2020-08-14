@@ -32,7 +32,7 @@ export class CharactersFacade {
   loadCharacters() {
     this.dispatch(CharactersActions.loadCharacters());
   }
-  loadCharactesByPage(page: number){
+  loadCharactersByPage(page: number){
     this.dispatch(CharactersActions.loadCharactersByPage({ page }));
   }
 

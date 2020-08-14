@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { LoginService } from '@thirty/ui-login';
 import { Router } from '@angular/router';
 
@@ -24,7 +23,6 @@ export class AppComponent implements OnInit{
   ];
 
   constructor(
-    private http: HttpClient,
     public loginService: LoginService,
     private router: Router) {}
 

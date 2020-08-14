@@ -5,7 +5,6 @@ import { fetch, pessimisticUpdate } from '@nrwl/angular';
 import { map, tap, exhaust, exhaustMap, catchError } from 'rxjs/operators';
 import * as GeneralsActions from './generals.actions';
 import { General, ApiObj } from '@thirty/api-interfaces';
-import { merge, of } from 'rxjs';
 
 @Injectable()
 export class GeneralsEffects {

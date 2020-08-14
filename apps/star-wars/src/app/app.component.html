@@ -10,7 +10,7 @@
         <mat-icon>menu</mat-icon>
       </button>
   </div>
-  <button *ngIf="loginService.isAuthenticated$ | async; else elseblock" mat-button 
+  <button #logoutButton *ngIf="loginService.isAuthenticated$ | async; else elseblock" mat-button 
   (click)="logout()">
     Logout
   </button>

@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '@thirty/material';
 import { of } from 'rxjs';
 
@@ -12,54 +12,57 @@ import { CharactersDetailComponent } from './components/characters-detail/charac
 import { CharactersListComponent } from './components/characters-list/characters-list.component';
 import { CharactersFacade } from '@thirty/core-state';
 import { Character } from '@thirty/api-interfaces';
+import { Router } from '@angular/router';
 
 const mockCharactersFacade = {
   loadCharacters: () => of({}),
+  loadCharacter: () => {},
   mutations$: {
     subscribe: () => of({})
   },
+  allCharacters$ : of([]),
   selectCharacter: (id:string) =>  {
     selectedCharacter.id = id;
-  }
+  },
+  resetSelectedCharacter: () => {},
 }
 
 const selectedCharacter: Character = {
-  id: '',
+  id: '0',
   name: '',
-  description: '',
-  color: '',
-  favorite: false,
-  icon: '',
-  amount: 0,
 }
 
 const mockCharacter: Character = {
   id: '0',
   name: 'mock',
-  description: '',
-  color: '',
-  favorite: true,
-  icon: '',
-  amount: 1,
 }
 
 describe('CharactersComponent', () => {
   let component: CharactersComponent;
   let fixture: ComponentFixture<CharactersComponent>;
   let de: DebugElement;
-  let characterFacade: CharactersFacade
+  let characterFacade: CharactersFacade;
+  let mockRouter;
 
   beforeEach(async(() => {
+    mockRouter = {
+      navigate: () => {}
+    }
+
+
+
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
         HttpClientModule,
+        FormsModule,
         MaterialModule,
         NoopAnimationsModule,
         RouterTestingModule,
       ],
       providers: [
-        { provide: CharactersFacade, useValue: mockCharactersFacade }
+        { provide: CharactersFacade, useValue: mockCharactersFacade },
+        { provide: Router, useValue: mockRouter },
       ],
       declarations: [ 
         CharactersComponent,
@@ -82,12 +85,6 @@ describe('CharactersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should select', () => {
-    component.select(mockCharacter);
-    expect(selectedCharacter).toMatchObject(mockCharacter);
-  });
-
-
   it('should open detail', () => {
     component.focusDetail();
     expect(component.detailOpen).toBe(true);
@@ -96,6 +93,22 @@ describe('CharactersComponent', () => {
   it('should close detail', () => {
     component.focusoutDetail();
     expect(component.detailOpen).toBe(false);
+  });
+
+  it('should call the character facade on select', () => {
+    const spy = jest.spyOn(characterFacade, 'selectCharacter')
+
+    component.select(mockCharacter);
+
+    expect(spy).toHaveBeenCalledWith(mockCharacter.id);
+  });
+
+  it('should call the character facade on cancel', () => {
+    const spy = jest.spyOn(characterFacade, 'resetSelectedCharacter')
+
+    component.cancel();
+
+    expect(spy).toHaveBeenCalled();
   });
 
 });

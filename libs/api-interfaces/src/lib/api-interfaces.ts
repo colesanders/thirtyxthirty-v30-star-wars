@@ -3,43 +3,52 @@ export interface Message {
 }
 
 export interface Character {
-  id: number,
+  id: any,
   name: string,
-  height: number,
-  mass: number,
-  hair_color: string,
-  skin_color: string,
-  eye_color: string,
-  birth_year: string,
-  gender: string,
-  homeworld: string,
-  films: string[],
+  height?: number,
+  mass?: number,
+  hair_color?: string,
+  skin_color?: string,
+  eye_color?: string,
+  birth_year?: string,
+  gender?: string,
+  homeworld?: string,
+  films?: string[],
+  species?: [],
+  vehicles?: string[],
+  starships?: string[],
+  created?: string,
+  edited?: string,
+  url?: string
+}
+
+export interface Basic {
+  films: [],
+  people: [],
+  vehicles: [],
+  starships: [],
   species: [],
-  vehicles: string[],
-  starships: string[],
-  created: string,
-  edited: string,
-  url: string
+  planets: []
 }
 
 export interface General {
-  id: number,
+  id: any,
   name: string,
-  height: number,
-  mass: number,
-  hair_color: string,
-  skin_color: string,
-  eye_color: string,
-  birth_year: string,
-  gender: string,
-  homeworld: string,
-  films: string[],
-  species: [],
-  vehicles: string[],
-  starships: string[],
-  created: string,
-  edited: string,
-  url: string
+  height?: number,
+  mass?: number,
+  hair_color?: string,
+  skin_color?: string,
+  eye_color?: string,
+  birth_year?: string,
+  gender?: string,
+  homeworld?: string,
+  films?: string[],
+  species?: [],
+  vehicles?: string[],
+  starships?: string[],
+  created?: string,
+  edited?: string,
+  url?: string
 }
 
 export interface Login {

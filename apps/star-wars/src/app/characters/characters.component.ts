@@ -40,7 +40,6 @@ export class CharactersComponent implements OnInit {
 
   select(character: Character): void{
     this.characterFacade.selectCharacter(character.id);
-    console.log('id: ', character.id)
     this.characterFacade.loadCharacter(character.id);
     this.focusDetail();
   }

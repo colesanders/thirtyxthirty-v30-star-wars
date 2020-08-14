@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GeneralsListComponent should filter generals 1`] = `
+Array [
+  Object {
+    "id": 0,
+    "name": "one",
+  },
+  Object {
+    "id": 2,
+    "name": "two",
+  },
+  Object {
+    "id": 3,
+    "name": "three",
+  },
+  Object {
+    "id": 4,
+    "name": "four",
+  },
+  Object {
+    "id": 5,
+    "name": "five",
+  },
+  Object {
+    "id": 6,
+    "name": "six",
+  },
+]
+`;

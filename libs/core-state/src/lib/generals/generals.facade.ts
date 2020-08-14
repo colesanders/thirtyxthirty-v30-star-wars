@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { filter } from 'rxjs/operators';
-import { select, Store, Action, ActionsSubject } from '@ngrx/store';
+import { select, Store, Action, ActionsSubject, createAction } from '@ngrx/store';
 
 import { General } from '@thirty/api-interfaces';
 
@@ -42,7 +42,7 @@ export class GeneralsFacade {
     this.dispatch(GeneralsActions.loadGenerals({ dataSet: this.dataSet }));
   }
 
-  loadCharactesByPage(page: number){
+  loadGeneralsByPage(page: number){
     this.dispatch(GeneralsActions.loadGeneralsByPage({ dataSet: this.dataSet, page }));
   }
 
